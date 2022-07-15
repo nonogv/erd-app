@@ -35,7 +35,7 @@ const App: React.FC = () => {
           <div className='border my-4'>
             {item.type === 'PDL'
               ? <div dangerouslySetInnerHTML={{ __html: item.img }} />
-              : <img src={item.img} />
+              : <img alt={item.title} src={item.img} />
             }
           </div>
           <div className='flex row mb-4 justify-between'>
@@ -45,7 +45,12 @@ const App: React.FC = () => {
               {item.description}
             </div>
           </div>
-          <a className='text-blue-600 underline hover:no-underline' href={item.url} target='_blank'>{item.url}</a>
+          <a
+            className='text-blue-600 underline hover:no-underline'
+            rel='noreferrer'
+            href={item.url}
+            target='_blank'
+          >{item.url}</a>
         </div>
       ))}
     </div>
