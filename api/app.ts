@@ -1,8 +1,11 @@
 import express, { Request, Response } from 'express';
 import axios from 'axios';
 import xml2js from 'xml2js';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
+
 const port = process.env.PORT || 4000;
 
 app.get('/', async (_: Request, response: Response) => {
@@ -17,7 +20,7 @@ app.get('/', async (_: Request, response: Response) => {
         type: 'PDL',
         img: PDLItem['content:encoded'][0],
         title: PDLItem.title[0],
-        description: PDLItem.description[0] || 'Empty description',
+        description: PDLItem.description[0] || `Created by ${PDLItem['dc:creator'][0]}, no description added.`,
         url: PDLItem.link[0],
         date: PDLItem.pubDate[0],
       }));
